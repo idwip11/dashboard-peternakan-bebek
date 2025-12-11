@@ -1,84 +1,53 @@
-# 🚀 Panduan Go-Live: GitHub & Deployment
+# 🚀 Panduan Go-Live: Vercel Fullstack + Neon Database
 
-Tahap persiapan file sudah selesai! Sekarang saatnya upload ke GitHub dan deploy ke internet.
+Solusi Deployment **100% GRATIS** tanpa Kartu Kredit!
 
-## Phase 4: Push ke GitHub
+## Phase 1: Siapkan Database (Neon.tech)
 
-Silakan ikuti langkah-langkah ini di terminal:
-
-1. **Stop semua server** dulu (Ctrl+C di terminal yang sedang running)
-2. **Masuk ke folder project**:
-   ```bash
-   cd "/Users/mac/Desktop/01. FOLDER IMAM/dashboard bebek/dashboard-bebek-app"
-   ```
-3. **Initialize Git & Push**:
-   ```bash
-   # Init Git
-   git init
-   
-   # Add all files
-   git add .
-   
-   # Commit pertama
-   git commit -m "Initial commit: Duck Farm Dashboard Fullstack"
-   
-   # Rename branch ke main
-   git branch -M main
-   
-   # Connect ke Remote Repository (Ganti URL dengan repository Anda)
-   # Buat repository baru dulu di github.com (kosongan, tanpa README/gitignore)
-   git remote add origin https://github.com/idwip11/dashboard-peternakan-bebek.git
-   
-   # Push code
-   git push -u origin main
-   ```
+1.  Buka **[https://console.neon.tech/signup](https://console.neon.tech/signup)**
+2.  **Sign up** dengan GitHub / Google.
+3.  Buat Project baru:
+    *   Name: `duck-farm-db`
+    *   Region: Singapore (atau terdekat)
+    *   Klik **Create Project**.
+4.  ⚠️ **COPY Connection String** (Contoh: `postgres://user:pass@ep-xyz.aws.neon.tech/neondb...`)
+    *   *Simpan URL ini untuk langkah selanjutnya.*
 
 ---
 
-## Phase 5 & 6: Deploy Backend & Database (Render)
+## Phase 2: Push Kode Baru ke GitHub
 
-1. Buka [dashboard.render.com](https://dashboard.render.com)
-2. Klik **New +** → **PostgreSQL**
-   - Name: `duck-farm-db`
-   - Region: Singapore (biar dekat)
-   - Plan: **Free**
-   - Click **Create Database**
-   - ⚠️ **COPY "Internal Connection URL"** (untuk Step 3) dan **"External Connection URL"** (untuk testing lokal nanti)
+Karena ada perubahan konfigurasi (kita pindah dari Render ke Vercel Fullstack), Anda wajib push kode terbaru dulu.
 
-3. Klik **New +** → **Web Service**
-   - Connect ke GitHub repo `dashboard-peternakan-bebek`
-   - **Root Directory**: `backend` (PENTING!)
-   - **Build Command**: `npm install && npm run build`
-   - **Start Command**: `npm start`
-   - **Environment Variables**:
-     - `DATABASE_URL`: Paste "Internal Connection URL" dari step 2
-     - `NODE_ENV`: `production`
-     - `FRONTEND_URL`: `https://dashboard-bebek.vercel.app` (nanti disesuaikan)
-   - Plan: **Free**
+Buka terminal dan jalankan:
 
-4. Tunggu deploy selesai! Backend Anda akan live di URL `.onrender.com`.
+```bash
+git add .
+git commit -m "Migrate backend to Vercel Serverless"
+git push
+```
 
 ---
 
-## Phase 7: Deploy Frontend (Vercel)
+## Phase 3: Deploy Fullstack ke Vercel
 
-1. Buka [vercel.com/new](https://vercel.com/new)
-2. Import repository `dashboard-peternakan-bebek`
-3. **Configure Project**:
-   - **Root Directory**: Klik "Edit" dan pilih folder root (biarkan default `.`)
-   - **Build & Development Settings**:
-     - Framework Preset: Vite (biasanya auto detect)
-   - **Environment Variables**:
-     - `VITE_API_URL`: Paste URL backend Render Anda (contoh: `https://xxxx.onrender.com/api`)
-4. Klik **Deploy**!
+1.  Buka **[https://vercel.com/new](https://vercel.com/new)**
+2.  Import repository `dashboard-peternakan-bebek`.
+3.  Di halaman **Configure Project**:
+    *   **Framework Preset**: Vite (Auto-detected).
+    *   **Root Directory**: Biarkan default (`./`).
+    *   **Environment Variables** (Klik tombol panah untuk expand):
+        *   Masukkan variable berikut **Satu per Satu**:
+            1.  `DATABASE_URL` = **Paste URL dari Neon tadi**
+            2.  `VITE_API_URL` = `/api`  *(Simpel kan? Cukup isi `/api` saja karena frontend & backend di satu domain)*
+4.  Klik **Deploy**.
 
 ---
 
 ## 🎉 Selesai!
 
-Sekarang aplikasi Anda sudah online!
-- Database: Render PostgreSQL
-- Backend: Render Web Service
-- Frontend: Vercel
+Tunggu proses build selesai (sekitar 1-2 menit).
+Jika sukses, aplikasi Anda akan live di URL `https://dashboard-peternakan-bebek.vercel.app`.
 
-**Note:** Saat awal deploy backend di Render, mungkin perlu menunggu 5-10 menit. Jika backend "tidur" (sleep), akses pertama kali akan loading sekitar 30 detik.
+### Catatan Penting
+Databasenya masih kosong. Anda bisa mulai input data batch baru lewat Dashboard yang sudah live!

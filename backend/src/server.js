@@ -40,10 +40,13 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Backend server running on http://localhost:${PORT}`);
-  console.log(`📊 Environment: ${process.env.NODE_ENV}`);
-});
+// Start Server (Only for local development)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV}`);
+  });
+}
 
+// Export for Vercel Serverless Functions
 module.exports = app;
