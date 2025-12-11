@@ -1,17 +1,51 @@
-# 🦆 Dashboard Peternakan Bebek
+# 🦆 Dashboard Peternakan Bebek (Duck Farm Management System)
 
-Dashboard web interaktif untuk manajemen dan analisis peternakan bebek dengan fitur tracking produksi, KPI analytics, dan WhatsApp notifications.
+![React](https://img.shields.io/badge/Frontend-React_19_+_Vite-blue?style=for-the-badge&logo=react)
+![NodeJS](https://img.shields.io/badge/Backend-Node.js_+_Express-green?style=for-the-badge&logo=nodedotjs)
+![Database](https://img.shields.io/badge/Database-PostgreSQL-336791?style=for-the-badge&logo=postgresql)
+![Deploy](https://img.shields.io/badge/Deploy-Vercel_+_Render-black?style=for-the-badge&logo=vercel)
 
-## 🚀 Quick Start
+Sistem manajemen peternakan bebek modern yang terintegrasi (Fullstack). Membantu peternak memantau performa kandang, mortalitas, produksi telur, dan keuangan secara real-time.
 
-### Prerequisites
-- ✅ **XAMPP** terinstall (untuk MySQL)
-- ✅ **Node.js** v18+ terinstall
-- ✅ **Browser** modern (Chrome, Firefox, Safari, Edge)
+🔗 **Live Demo:** [https://dashboard-bebek.vercel.app](https://dashboard-bebek.vercel.app) (Soon)
 
-### Instalasi & Menjalankan
+## ✨ Key Features
 
-#### Cara 1: Menggunakan Script Otomatis (Recommended)
+### 📊 Real-time Dashboard
+- **Smart KPIs**: Monitor total populasi, mortalitas, FCR (Feed Conversion Ratio), dan HDP (Hen Day Production) secara real-time.
+- **Financial Tracking**: Analisis revenue, biaya operasional, dan profit margin otomatis.
+- **Interactive Charts**: Visualisasi tren produksi 30 hari terakhir.
+
+### 📱 Smart Management
+- **Multi-Batch Support**: Manajemen banyak kandang (pedaging & petelur) sekaligus.
+- **Daily Input**: Form input data harian yang mudah digunakan.
+- **WhatsApp Alerts**: Notifikasi otomatis saat mortalitas tinggi atau performa turun.
+- **Excel Export**: Download laporan bulanan dalam format CSV/Excel.
+
+### 🧠 Performance Analytics
+- **Industry Benchmarking**: Otomatis membandingkan performa ternak dengan standar industri.
+- **Auto-Recommendations**: Memberikan saran perbaikan berdasarkan data FCR dan mortalitas.
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend:**
+- React 19 + Vite (High Performance)
+- Tailwind CSS (Modern UI)
+- Recharts (Data Visualization)
+- Lucide React (Icons)
+
+**Backend:**
+- Node.js & Express (REST API)
+- Prisma ORM (Database Management)
+- PostgreSQL (Database)
+
+**Deployment:**
+- Frontend: Vercel
+- Backend & DB: Render Cloud
+
+---
 
 1. **Start MySQL di XAMPP**
    - Buka XAMPP Control Panel
