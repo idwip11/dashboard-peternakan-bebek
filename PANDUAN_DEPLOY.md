@@ -36,9 +36,9 @@ git push
 3.  Di halaman **Configure Project**:
     *   **Framework Preset**: Vite (Auto-detected).
     *   **Root Directory**: Biarkan default (`./`).
-    *   Klik toggle **Build Command** dan isi dengan:
-        `cd backend && npm install && npx prisma generate && npx prisma db push && cd .. && npm run build`
-        *(Perintah ini memastikan dependency terinstall sebelum database di-push)*
+    *   **Build Command**: `npx prisma generate && npm run build`
+        *(Jauh lebih simpel karena Prisma sudah di root)*
+    *   **Output Directory**: `dist`
     *   **Environment Variables** (Klik tombol panah untuk expand):
         *   Masukkan variable berikut **Satu per Satu**:
             1.  `DATABASE_URL` = **Paste URL dari Neon tadi**
