@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Batch {
+  id                Int            @id @default(autoincrement())
+  name              String
+  type              BatchType
+  startDate         DateTime       @map("start_date") @db.Date
+  population        Int
+  initialPopulation Int            @map("initial_population")
+  age               Int
+  status            BatchStatus    @default(AKTIF)
+  createdAt         DateTime       @default(now()) @map("created_at")
+  updatedAt         DateTime       @updatedAt @map("updated_at")
+  
+  dailyRecords      DailyRecord[]
+  
+  @@map("batches")
+}
+
+model DailyRecord {
+  id              Int      @id @default(autoincrement())
+  batchId         Int      @map("batch_id")
+  recordDate      DateTime @map("record_date") @db.Date
+  mortality       Int      @default(0)
+  feedConsumption Decimal  @default(0) @map("feed_consumption") @db.Decimal(10, 2)
+  eggProduction   Int      @default(0) @map("egg_production")
+  eggWeight       Decimal  @default(0) @map("egg_weight") @db.Decimal(10, 2)
+  rejectedEggs    Int      @default(0) @map("rejected_eggs")
+  avgWeight       Decimal  @default(0) @map("avg_weight") @db.Decimal(10, 2)
+  expenses        Decimal  @default(0) @db.Decimal(15, 2)
+  revenue         Decimal  @default(0) @db.Decimal(15, 2)
+  notes           String?  @db.Text
+  createdAt       DateTime @default(now()) @map("created_at")
+  
+  batch           Batch    @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  
+  @@unique([batchId, recordDate], map: "unique_batch_date")
+  @@map("daily_records")
+}
+
+model Setting {
+  id           Int      @id @default(autoincrement())
+  settingKey   String   @unique @map("setting_key")
+  settingValue String?  @map("setting_value") @db.Text
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  
+  @@map("settings")
+}
+
+enum BatchType {
+  PEDAGING @map("pedaging")
+  PETELUR  @map("petelur")
+  
+  @@map("batch_type")
+}
+
+enum BatchStatus {
+  AKTIF   @map("aktif")
+  PANEN   @map("panen")
+  SELESAI @map("selesai")
+  
+  @@map("batch_status")
+}
