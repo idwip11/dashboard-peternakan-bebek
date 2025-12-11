@@ -37,7 +37,7 @@ git push
     *   **Framework Preset**: Vite (Auto-detected).
     *   **Root Directory**: Biarkan default (`./`).
     *   Klik toggle **Build Command** dan isi dengan:
-        `cd backend && npm install && npx prisma db push && cd .. && npm run build`
+        `cd backend && npm install && npx prisma generate && npx prisma db push && cd .. && npm run build`
         *(Perintah ini memastikan dependency terinstall sebelum database di-push)*
     *   **Environment Variables** (Klik tombol panah untuk expand):
         *   Masukkan variable berikut **Satu per Satu**:
